@@ -1,12 +1,21 @@
 import { expect } from 'chai';
-import { Node } from '../lib/Node.js';
+import  Node  from '../lib/Node.js';
 
 
 describe('Node', () => {
+  let node;
 
-  it.skip('should be a ', () => {
-    expect(Node).to.be.a('object');
+  beforeEach(() => {
+    node = new Node();
+  });
+
+  it('should be a function', () => {
+    expect(Node).to.be.a('function');
 
   });
 
+  
+
 });
+
+
