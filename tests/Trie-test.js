@@ -65,10 +65,19 @@ describe('Insert', () => {
 
 describe('Suggest', () => {
 
-  it.skip('should be able to suggest a word based on the prefix', () => {
-
+  it('should take a suggestion', () => {
+    trie.insert('pirate');
+    trie.insert('pirate-fishing');
+    expect(trie.suggest('pirat')).to.deep.equal(['pirate', 'pirate-fishing']);
 
   });
+
+  it('should only suggest words that are similar', () => {
+    trie.insert('pirate');
+    trie.insert('pirate-fishing');
+    trie.insert('corgi');
+    expect(trie.suggest('pirat')).to.deep.equal(['pirate', 'pirate-fishing']);
+  })
 
 
   
