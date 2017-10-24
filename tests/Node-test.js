@@ -9,8 +9,8 @@ describe('Node', () => {
     node = new Node();
   });
 
-  it('should be a function', () => {
-    expect(Node).to.be.a('function');
+  it('should be a object', () => {
+    expect(node).to.be.an('object');
 
   });
 

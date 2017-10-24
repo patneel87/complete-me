@@ -14,14 +14,14 @@ beforeEach(() => {
 
 describe('Trie', () => {
 
-  it('it should be function', () => {
-    expect(Trie).to.be.a('function');
+  it('it should be an object', () => {
+    expect(completion).to.be.an('object');
 
   });
 
-  it('should take a root', () => {
-
-    expect(Trie)
+  it('should have a node as the root property', () => {
+    let node = new Node('');
+    expect(completion.root).to.deep.equal(node);
 
   });
 
