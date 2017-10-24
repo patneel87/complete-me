@@ -6,24 +6,90 @@ import fs from 'fs';
 const text = "/usr/share/dict/words"
 const dictionary = fs.readFileSync(text).toString().trim().split('\n')
 
+let trie;
+
+beforeEach(() => {
+  trie = new Trie();
+});
 
 describe('Trie', () => {
 
-  it('it should be function', () => {
-    expect(Trie).to.be.a('function');
+  it('it should be an object', () => {
+    expect(trie).to.be.an('object');
+
   });
 
-  it('should be able to insert a word', () => {
-    const completion = new Trie();
-    completion.insert('corgi');
-    completion.insert('court');
-    console.log(JSON.stringify(completion, null, 2))
-  })
+  it('should have a node as the root property', () => {
+    let node = new Node('');
+    expect(trie.root).to.deep.equal(node);
 
-  it('should populate the dictionary', () => {
-    const completion = new Trie();
-    completion.populate(dictionary);
-    expect(completion.count).to.equal(235886);
   });
 
 });
+
+describe('Insert', () => {
+
+  it('should be able to insert a word', () => {
+    trie.insert('corgi');
+    // console.log(JSON.stringify(trie, null, 2))
+
+  });
+
+  it('should be able to insert many words', () => {
+    trie.insert('stuff');
+    trie.insert('things');
+    trie.insert('cobra');
+
+  });
+
+  it('should be able to count a word', () => {
+    expect(trie.count).to.equal(0);
+    trie.insert('corgi');
+    expect(trie.count).to.equal(1);
+
+  });
+
+  it('should be able to count many words', () => {
+    expect(trie.count).to.equal(0);
+    trie.insert('cobra');
+    expect(trie.count).to.equal(1);
+    trie.insert('gazelle');
+    expect(trie.count).to.equal(2);
+    trie.insert('snake');
+    expect(trie.count).to.equal(3);
+
+  });
+
+});
+
+
+describe('Suggest', () => {
+
+  it('should take a suggestion', () => {
+    trie.insert('pirate');
+    trie.insert('pirate-fishing');
+    expect(trie.suggest('pirat')).to.deep.equal(['pirate', 'pirate-fishing']);
+
+  });
+
+  it('should only suggest words that are similar', () => {
+    trie.insert('pirate');
+    trie.insert('pirate-fishing');
+    trie.insert('corgi');
+    expect(trie.suggest('pirat')).to.deep.equal(['pirate', 'pirate-fishing']);
+  })
+
+
+  
+});
+
+describe('Populate', () => {
+
+  it('should populate the dictionary', () => {
+    trie.populate(dictionary);
+    expect(trie.count).to.equal(235886);
+
+  });
+
+});
+
