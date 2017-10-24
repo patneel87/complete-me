@@ -60,6 +60,22 @@ describe('Insert', () => {
 
   });
 
+});
+
+
+describe('Suggest', () => {
+
+  it.skip('should be able to suggest a word based on the prefix', () => {
+
+
+  });
+
+
+  
+});
+
+describe('Populate', () => {
+
   it('should populate the dictionary', () => {
     trie.populate(dictionary);
     expect(trie.count).to.equal(235886);
@@ -67,3 +83,4 @@ describe('Insert', () => {
   });
 
 });
+
