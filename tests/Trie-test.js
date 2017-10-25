@@ -77,7 +77,16 @@ describe('Suggest', () => {
     trie.insert('pirate-fishing');
     trie.insert('corgi');
     expect(trie.suggest('pirat')).to.deep.equal(['pirate', 'pirate-fishing']);
-  })
+
+  });
+
+  it('should be able to suggest a small amount of words', () => {
+    trie.populate(dictionary);
+    trie.insert('dum');
+    console.log(trie.suggest('dum'));
+    expect(trie.suggest('dum')).to.include.members(['dumb', 'dump','dumpy', 'dummel', 'dumbledore', 'dumbcow', 'dumbfounder']);
+
+  });
 
 
   
