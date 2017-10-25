@@ -36,7 +36,6 @@ describe('Insert', () => {
 
   it('should be able to insert a word', () => {
     trie.insert('corgi');
-    console.log(trie)
     expect(
       trie.root.children
       .c.children
@@ -44,17 +43,33 @@ describe('Insert', () => {
       .r.children
       .g.children
       .i.letter).to.equal('i');
-    
-
+   
   });
 
-  it.skip('should be able to insert many words', () => {
+  it('should be able to insert many words', () => {
     trie.insert('stuff');
-    trie.insert('things');
-    trie.insert('cobra');
+    trie.insert('thing');
+    expect(
+      trie.root.children
+      .s.children
+      .t.children
+      .u.children
+      .f.children
+      .f.letter).to.equal('f');
+    expect(
+      trie.root.children
+      .t.children
+      .h.children
+      .i.children
+      .n.children
+      .g.letter).to.equal('g');
     
-
   });
+
+});
+
+  
+describe('Count', () => {
 
   it('should be able to count a word', () => {
     expect(trie.count).to.equal(0);
@@ -75,7 +90,6 @@ describe('Insert', () => {
   });
 
 });
-
 
 describe('Suggest', () => {
 
@@ -100,8 +114,6 @@ describe('Suggest', () => {
     expect(trie.suggest('dum')).to.include.members(['dumb', 'dump','dumpy', 'dummel', 'dumbledore', 'dumbcow', 'dumbfounder']);
 
   });
-
-
   
 });
 
