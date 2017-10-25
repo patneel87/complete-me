@@ -36,6 +36,14 @@ describe('Insert', () => {
 
   it('should be able to insert a word', () => {
     trie.insert('corgi');
+    console.log(trie)
+    expect(
+      trie.root.children
+      .c.children
+      .o.children
+      .r.children
+      .g.children
+      .i.letter).to.equal('i');
     
 
   });
