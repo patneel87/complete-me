@@ -115,10 +115,10 @@ describe('Suggest', () => {
 
   });
 
-  it.skip('should not suggest a word if the word doesnt exist', () => {
+  it('should not suggest a word if the word doesnt exist', () => {
     trie.populate(dictionary);
     trie.insert('xj');
-    expect(trie.suggest('xj')).to.equal([]);
+    expect(trie.suggest('xj')).to.deep.equal([]);
 
   });
   
@@ -131,6 +131,26 @@ describe('Populate', () => {
     expect(trie.count).to.equal(235886);
 
   });
+
+});
+
+describe('Select', () => {
+
+  it.skip('should select word that has already been searched', () => {
+    trie.populate(dictionary);
+    trie.insert('corgi');
+    trie.insert('corgi');
+    trie.insert('dog');
+    expect(trie.select('corgi')).to.equal('corgi');
+
+  });
+
+  it.skip('should be able to select many words that have already been searched', () => {
+    
+
+
+  });
+
 
 });
 
