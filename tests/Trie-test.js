@@ -114,6 +114,13 @@ describe('Suggest', () => {
     expect(trie.suggest('dum')).to.include.members(['dumb', 'dump','dumpy', 'dummel', 'dumbledore', 'dumbcow', 'dumbfounder']);
 
   });
+
+  it.skip('should not suggest a word if the word doesnt exist', () => {
+    trie.populate(dictionary);
+    trie.insert('xj');
+    expect(trie.suggest('xj')).to.equal([]);
+
+  });
   
 });
 
