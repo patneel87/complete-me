@@ -34,6 +34,11 @@ describe('Trie', () => {
 
 describe('Insert', () => {
 
+  it('should be a function', () => {
+    expect(trie.insert).to.be.a('function');
+
+  });
+
   it('should be able to insert a word', () => {
     trie.insert('corgi');
     expect(
@@ -68,7 +73,6 @@ describe('Insert', () => {
 
 });
 
-  
 describe('Count', () => {
 
   it('should be able to count a word', () => {
@@ -89,9 +93,23 @@ describe('Count', () => {
 
   });
 
+  it('should not could the same word twice if already submitted', () => {
+    expect(trie.count).to.equal(0);
+    trie.insert('corgi');
+    expect(trie.count).to.equal(1);
+    trie.insert('corgi');
+    expect(trie.count).to.equal(1);
+    
+  });
+
 });
 
 describe('Suggest', () => {
+
+  it('should be a function', () => {
+    expect(trie.suggest).to.be.a('function');
+
+  });
 
   it('should take a suggestion', () => {
     trie.insert('pirate');
@@ -126,6 +144,11 @@ describe('Suggest', () => {
 
 describe('Populate', () => {
 
+  it('should be a function', () => {
+    expect(trie.populate).to.be.a('function');
+
+  });
+
   it('should populate the dictionary', () => {
     trie.populate(dictionary);
     expect(trie.count).to.equal(235886);
@@ -136,19 +159,18 @@ describe('Populate', () => {
 
 describe('Select', () => {
 
-  it.skip('should select word that has already been searched', () => {
-    trie.populate(dictionary);
-    trie.insert('corgi');
-    trie.insert('corgi');
-    trie.insert('dog');
-    expect(trie.select('corgi')).to.equal('corgi');
+  it('should be a function', () => {
+    expect(trie.select).to.be.a('function');
 
   });
 
-  it.skip('should be able to select many words that have already been searched', () => {
-    
-
-
+  it('should increase popularity if searched numerous times', () => {
+      trie.insert('dog');
+      expect(trie.root.children.d.children.o.children.g.popularity).to.equal(0);
+      trie.select('dog');
+      expect(trie.root.children.d.children.o.children.g.popularity).to.equal(1);
+      trie.select('dog');
+      expect(trie.root.children.d.children.o.children.g.popularity).to.equal(2);      
   });
 
 
