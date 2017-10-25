@@ -25,20 +25,26 @@ describe('Trie', () => {
 
   });
 
+  it('should have a starting count of zero', () => {
+    expect(trie.count).to.deep.equal(0);
+
+  });
+
 });
 
 describe('Insert', () => {
 
   it('should be able to insert a word', () => {
     trie.insert('corgi');
-    // console.log(JSON.stringify(trie, null, 2))
+    
 
   });
 
-  it('should be able to insert many words', () => {
+  it.skip('should be able to insert many words', () => {
     trie.insert('stuff');
     trie.insert('things');
     trie.insert('cobra');
+    
 
   });
 
@@ -83,7 +89,6 @@ describe('Suggest', () => {
   it('should be able to suggest a small amount of words', () => {
     trie.populate(dictionary);
     trie.insert('dum');
-    console.log(trie.suggest('dum'));
     expect(trie.suggest('dum')).to.include.members(['dumb', 'dump','dumpy', 'dummel', 'dumbledore', 'dumbcow', 'dumbfounder']);
 
   });
