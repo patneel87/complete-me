@@ -189,6 +189,15 @@ describe('Select', () => {
       expect(trie.root.children.d.children.o.children.g.popularity).to.equal(2);      
   });
 
+  it('should suggest the word that has already been selected', () => {
+      trie.insert('cage');
+      trie.insert('corgi');
+     expect(trie.suggest('c')).to.deep.equal(['cage', 'corgi']);
+      trie.select('corgi');
+      expect(trie.suggest('c')).to.deep.equal(['corgi','cage']);
+
+  });
+
 
 });
 
