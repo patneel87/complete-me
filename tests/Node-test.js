@@ -16,7 +16,7 @@ describe('Node', () => {
   });
 
   it('should take a letter as a property', () => {
-    expect(node.letter).to.deep.equal('z');
+    expect(node.letter).to.equal('z');
 
   });
 
@@ -26,9 +26,13 @@ describe('Node', () => {
   });
 
   it('should have word end as a property', () => {
-    expect(node.wordEnd).to.deep.equal(false);
+    expect(node.wordEnd).to.equal(false);
 
   });
+
+  it('should have a popularity that starts at 0', () => {
+    expect(node.popularity).to.equal(0);
+  })
 
 });
 

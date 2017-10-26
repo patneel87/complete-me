@@ -75,6 +75,10 @@ describe('Insert', () => {
 
 describe('Count', () => {
 
+  it('should return 0 by default or no words have been inserted', () => {
+    expect(trie.count).to.equal(0);
+  });
+
   it('should be able to count a word', () => {
     expect(trie.count).to.equal(0);
     trie.insert('corgi');
@@ -106,10 +110,14 @@ describe('Count', () => {
 
 describe('Suggest', () => {
 
-  it('should be a function', () => {
+  it('should be a method', () => {
     expect(trie.suggest).to.be.a('function');
 
   });
+
+  it('should return an array', () => {
+    expect(trie.suggest('')).to.deep.equal([]);
+  })
 
   it('should take a suggestion', () => {
     trie.insert('pirate');
@@ -126,7 +134,7 @@ describe('Suggest', () => {
 
   });
 
-  it('should be able to suggest a small amount of words', () => {
+  it('should be able to suggest a small amount of words from the dictionary', () => {
     trie.populate(dictionary);
     trie.insert('dum');
     expect(trie.suggest('dum')).to.include.members(['dumb', 'dump','dumpy', 'dummel', 'dumbledore', 'dumbcow', 'dumbfounder']);
@@ -139,12 +147,19 @@ describe('Suggest', () => {
     expect(trie.suggest('xj')).to.deep.equal([]);
 
   });
+
+  it('should be case sensitive', () => {
+    trie.insert('doge');
+    trie.insert('dogeared');
+    expect(trie.suggest('DOG')).to.deep.equal(['doge', 'dogeared']);
+
+  });
   
 });
 
 describe('Populate', () => {
 
-  it('should be a function', () => {
+  it('should be a method', () => {
     expect(trie.populate).to.be.a('function');
 
   });
@@ -159,7 +174,7 @@ describe('Populate', () => {
 
 describe('Select', () => {
 
-  it('should be a function', () => {
+  it('should be a method', () => {
     expect(trie.select).to.be.a('function');
 
   });
