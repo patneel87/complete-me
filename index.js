@@ -1,2 +1,4 @@
 const node = require('../lib/Node.js');
-const 
+const trie = require('../lib/Trie.js');
+
+module.exports = {node, trie};
